@@ -5,6 +5,10 @@ FNF Links: **[itch.io page](https://ninja-muffin24.itch.io/funkin) ⋅ [Newgroun
 
 # Credits
 
+## About my fork
+
+I made only a chart for the song "run-remix-because-its-cool", lol. This song was already in mod. It was just hidden and did haven't a chart. I just made a chart for this song because it's really cool! 
+
 ### Bob's Onslaught
 - [AetherDX](https://twitter.com/AetherDX), [AyeTSG](https://twitter.com/AyeTSG) and [wildythomas](https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ) - Programming
 - [HiPhlox](https://twitter.com/HiPhlox) and [donney](https://twitter.com/Donna863_) - Art
