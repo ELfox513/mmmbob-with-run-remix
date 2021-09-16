@@ -1,13 +1,13 @@
-![Logo](https://i.imgur.com/GzV0maS.png) 
+![Logo](https://i.imgur.com/GzV0maS.png)
+## About my fork
+
+I made only a chart for the song "run-remix-because-its-cool", lol. This song was already in mod. It was just hidden and did haven't a chart. I just made a chart for this song because it's really cool!
+
 ## Built on **[Kade Engine](https://github.com/KadeDev/Kade-Engine)**
 
 FNF Links: **[itch.io page](https://ninja-muffin24.itch.io/funkin) ⋅ [Newgrounds](https://www.newgrounds.com/portal/view/770371) ⋅ [source code on GitHub](https://github.com/ninjamuffin99/Funkin)**
 
-# Credits
-
-## About my fork
-
-I made only a chart for the song "run-remix-because-its-cool", lol. This song was already in mod. It was just hidden and did haven't a chart. I just made a chart for this song because it's really cool! 
+# Credits 
 
 ### Bob's Onslaught
 - [AetherDX](https://twitter.com/AetherDX), [AyeTSG](https://twitter.com/AyeTSG) and [wildythomas](https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ) - Programming
