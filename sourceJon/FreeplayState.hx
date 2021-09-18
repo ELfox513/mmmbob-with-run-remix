@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.math.FlxRandom; // ELabel
 import lime.utils.Assets;
 
 
@@ -33,11 +34,14 @@ class FreeplayState extends MusicBeatState
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
+	var random:FlxRandom; // ELabel
+
 	private var iconArray:Array<HealthIcon> = [];
 
 	override function create()
 	{
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
+		random = new FlxRandom(); // ELabel
 
 		for (i in 0...initSonglist.length)
 		{
@@ -281,6 +285,11 @@ class FreeplayState extends MusicBeatState
 			iconArray[i].alpha = 0.6;
 		}
 
+		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
+			curDifficulty = 1;
+			diffText.text = "RUN";
+		}
+
 		iconArray[curSelected].alpha = 1;
 
 		for (item in grpSongs.members)
@@ -295,6 +304,10 @@ class FreeplayState extends MusicBeatState
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
+			}
+
+			if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
+				item.targetY = item.targetY + random.int(0, 10);
 			}
 		}
 	}
