@@ -42,14 +42,11 @@ jobs:
           haxelib git polymod https://github.com/larsiusprime/polymod.git
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib git extension-webm https://github.com/KadeDev/extension-webm
-          haxelib run lime rebuild extension-webm windows
-          haxelib git linc_luajit https://github.com/luckydog7/linc_luajit.git
-          haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
-          haxelib install actuate 
+          haxelib run lime rebuild extension-webm windowshaxelib install actuate 
           haxelib list
-          haxelib run lime build windows
+          haxelib run lime build windows -debug
           
       - uses: actions/upload-artifact@v2
         with:
           name: Windows Build
-          path: exportJon/release/windows/bin
+          path: exportJon/debug/windows/bin
