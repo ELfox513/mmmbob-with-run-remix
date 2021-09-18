@@ -204,6 +204,15 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
+		
+		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
+			for (item in grpSongs.members) {
+				item.targetY = item.targetY + random.int(0, 10);
+			}
+			curDifficulty = 1;
+			diffText.text = "RUN";
+		}
+
 		if (accepted)
 		{
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
@@ -240,11 +249,6 @@ class FreeplayState extends MusicBeatState
 				diffText.text = 'NORMAL';
 			case 2:
 				diffText.text = "HARD";
-		}
-
-		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
-			curDifficulty = 1;
-			diffText.text = "RUN";
 		}
 	}
 
@@ -285,11 +289,6 @@ class FreeplayState extends MusicBeatState
 			iconArray[i].alpha = 0.6;
 		}
 
-		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
-			curDifficulty = 1;
-			diffText.text = "RUN";
-		}
-
 		iconArray[curSelected].alpha = 1;
 
 		for (item in grpSongs.members)
@@ -304,10 +303,6 @@ class FreeplayState extends MusicBeatState
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
-			}
-
-			if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
-				item.targetY = item.targetY + random.int(0, 10);
 			}
 		}
 	}
