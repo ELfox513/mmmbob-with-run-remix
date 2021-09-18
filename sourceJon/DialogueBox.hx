@@ -114,6 +114,8 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
+			case 'run-remix-because-its-cool': // ELabel
+				hasDialog = false;             // Yea, I don't know, that I do
 			case 'little-man':
 				hasDialog = false;
 			default:
