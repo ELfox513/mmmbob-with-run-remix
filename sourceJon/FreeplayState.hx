@@ -240,7 +240,7 @@ class FreeplayState extends MusicBeatState
 
 		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
 			curDifficulty = 1;
-			diffText.text = "RUN"
+			diffText.text = "RUN";
 		}
 	}
 
