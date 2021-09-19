@@ -76,10 +76,10 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg2 = new FlxSprite().loadGraphic(Paths.image('bobscreen')); // ELabel
-		add(bg2);
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue')); // ELabel
 		add(bg);
+		bg2 = new FlxSprite().loadGraphic(Paths.image('bobscreen')); // ELabel
+		add(bg2);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
