@@ -214,7 +214,11 @@ class FreeplayState extends MusicBeatState
 			diffText.text = "RUN";
 		} else {
 			for (item in grpSongs.members) {
+<<<<<<< HEAD
 				item.offset.set(0, 0);
+=======
+				//item.offset.set(new FlxPoint());
+>>>>>>> 35c22feaa23f171fe4c3a3323d80bf79ada05ac1
 			}
 		}
 
