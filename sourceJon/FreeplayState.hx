@@ -76,7 +76,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg2 = new FlxSprite().loadGraphic(Paths.image('bob/bobscreen'); // ELabel
+		bg2 = new FlxSprite().loadGraphic(Paths.image('bob/bobscreen')); // ELabel
 		add(bg2);
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue')); // ELabel
 		add(bg);
