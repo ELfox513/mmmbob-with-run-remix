@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
+import flixel.math.FlxPoint; // ELabel
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.math.FlxRandom; // ELabel
