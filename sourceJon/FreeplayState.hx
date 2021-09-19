@@ -222,7 +222,7 @@ class FreeplayState extends MusicBeatState
 			diffText.text = "";
 
 			if (numForRunIter == 0) scoreText.text = ""; //RUNRUNRUNRUNRUNRUN
-			if (numForRunIter % 7 == 6) {                //RUNRUNRUNRUNRUNRUN
+			if (numForRunIter % 9 == 8) {                //RUNRUNRUNRUNRUNRUN
 				scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
 			} else {                                     //RUNRUNRUNRUNRUNRUN
 				scoreText.text = scoreText.text + "RUN"; //RUNRUNRUNRUNRUNRUN
