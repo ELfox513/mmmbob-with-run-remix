@@ -76,7 +76,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg2 = new FlxSprite().loadGraphic(Paths.image('bob/bobscreen')); // ELabel
+		bg2 = new FlxSprite().loadGraphic(Paths.image('bobscreen')); // ELabel
 		add(bg2);
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue')); // ELabel
 		add(bg);
@@ -221,15 +221,14 @@ class FreeplayState extends MusicBeatState
 			scoreText.text = "RUN";
 			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
 			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
-			bg.visible = false; // Way for change background, lol
-			bg2.visible = true;
+			bg2.visible = true; // Bobscreen
+			bg2.alpha = random.float(0.40, 0.60);
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
 			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
-			bg.visible = true;
 			bg2.visible = false;
 		}
 

@@ -427,6 +427,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
+			curBeat = 16; // ELabel
 		}
 	}
 }
