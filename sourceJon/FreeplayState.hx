@@ -208,13 +208,13 @@ class FreeplayState extends MusicBeatState
 		
 		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
 			for (item in grpSongs.members) {
-				item.offset.set(new FlxPoint(random.float(0, 10), random.float(0, 10))); // Some shaking, I mean
+				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking, I mean
 			}
 			curDifficulty = 1;
 			diffText.text = "RUN";
 		} else {
 			for (item in grpSongs.members) {
-				item.offset.set(new FlxPoint());
+				item.offset.set(0, 0);
 			}
 		}
 
