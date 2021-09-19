@@ -245,7 +245,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
 			ShadersHandler.setChrome(0.01); // Trying create shader stuff
-			ShadersHandler.setContrast(0.01);
+			//ShadersHandler.setContrast(0.01);
 			ShadersHandler.setBrightness(0.01);
 
 		} else {
@@ -261,7 +261,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 
 			ShadersHandler.setChrome(0);
-			ShadersHandler.setContrast(0);
+			//ShadersHandler.setContrast(0);
 			ShadersHandler.setBrightness(0);
 		}
 
