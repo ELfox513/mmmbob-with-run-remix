@@ -39,6 +39,7 @@ class FreeplayState extends MusicBeatState
 	var bg:FlxSprite; // ELabel
 	var bg2:FlxSprite; // ELabel
 	var scoreBG:FlxSprite; // ELabel
+	var numForRunIter:Int = 0; // ELabel 
 
 	private var iconArray:Array<HealthIcon> = [];
 
@@ -219,17 +220,28 @@ class FreeplayState extends MusicBeatState
 			}
 			curDifficulty = 1;
 			diffText.text = "";
-			scoreText.text = "RUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN"; // lol
+
+			if (numForRunIter == 0) scoreText.text = ""; //RUNRUNRUNRUNRUNRUN
+			if (numForRunIter % 7 == 6) {                //RUNRUNRUNRUNRUNRUN
+				scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
+			} else {                                     //RUNRUNRUNRUNRUNRUN
+				scoreText.text = scoreText.text + "RUN"; //RUNRUNRUNRUNRUNRUN
+			}                                            //RUNRUNRUNRUNRUNRUN
+			numForRunIter += 1;                          //RUNRUNRUNRUNRUNRUN
+
 			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
 			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
-			FlxTween.tween(bg2, {alpha: 1}); // Bobscreen
+			FlxTween.cancelTweensOf(bg2);
+			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			numForRunIter = 0;
 			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
-			FlxTween.tween(bg2, {alpha: 0});
+			FlxTween.cancelTweensOf(bg2);
+			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 		}
 
 		if (accepted)
