@@ -11,7 +11,10 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.math.FlxRandom; // ELabel
 import lime.utils.Assets;
+
 import flixel.tweens.FlxTween; // ELabel
+import flixel.FlxCamera; 
+import openfl.filters.BitmapFilter;
 
 #if windows
 import Discord.DiscordClient;
@@ -45,6 +48,13 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		var mainCam = new FlxCamera(); // ELabel 
+		FlxG.cameras.reset(mainCam);
+		FlxCamera.defaultCameras = [mainCam];
+		var filters:Array<BitmapFilter> = [ShadersHandler.chromaticAberration, ShadersHandler.brightShader];
+		FlxG.camera.setFilters(filters);
+		FlxG.camera.filtersEnabled = true;
+
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		random = new FlxRandom(); // ELabel
 
@@ -233,15 +243,26 @@ class FreeplayState extends MusicBeatState
 			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
 			FlxTween.cancelTweensOf(bg2);
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
+
+			ShadersHandler.setChrome(0.01); // Trying create shader stuff
+			ShadersHandler.setContrast(0.01);
+			ShadersHandler.setBrightness(0.01);
+
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
+
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
-			numForRunIter = 0;
+
+			numForRunIter = 0; 
 			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
 			FlxTween.cancelTweensOf(bg2);
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
+
+			ShadersHandler.setChrome(0);
+			ShadersHandler.setContrast(0);
+			ShadersHandler.setBrightness(0);
 		}
 
 		if (accepted)
