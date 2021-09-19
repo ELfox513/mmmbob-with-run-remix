@@ -37,6 +37,8 @@ class FreeplayState extends MusicBeatState
 
 	var random:FlxRandom; // ELabel
 
+	var scoreBG:FlxSprite; // ELabel
+
 	private var iconArray:Array<HealthIcon> = [];
 
 	override function create()
@@ -66,7 +68,7 @@ class FreeplayState extends MusicBeatState
 		var isDebug:Bool = false;
 
 		#if debug
-		isDebug = true;
+		isDebug = false; // ELabel
 		#end
 
 		// LOAD MUSIC
@@ -103,7 +105,7 @@ class FreeplayState extends MusicBeatState
 		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
-		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
+		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000); // ELabel
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
 
@@ -180,8 +182,6 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-		scoreText.text = "PERSONAL BEST:" + lerpScore;
-
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
@@ -206,16 +206,23 @@ class FreeplayState extends MusicBeatState
 		}
 
 		
-		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel
+		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel for BIG BLOCK
 			for (item in grpSongs.members) {
-				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking, I mean
+				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for songs titles, I mean
+			}
+			for (i in 0...iconArray.length) {
+				iconArray[i].offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for icons
 			}
 			curDifficulty = 1;
-			diffText.text = "RUN";
+			diffText.text = "";
+			scoreText.text = "RUN";
+			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
+			scoreBG.offset.set(random.float(0, 10), random.float(0, 10)); 
 		} else {
-			for (item in grpSongs.members) {
-				item.offset.set(0, 0);
-			}
+			for (item in grpSongs.members) item.offset.set(0, 0);
+			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
+			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			scoreBG.offset.set(0, 0);
 		}
 
 		if (accepted)
