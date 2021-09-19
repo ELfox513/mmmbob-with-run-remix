@@ -11,7 +11,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.math.FlxRandom; // ELabel
 import lime.utils.Assets;
-
+import flixel.tweens.FlxTween; // ELabel
 
 #if windows
 import Discord.DiscordClient;
@@ -79,6 +79,7 @@ class FreeplayState extends MusicBeatState
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue')); // ELabel
 		add(bg);
 		bg2 = new FlxSprite().loadGraphic(Paths.image('bobscreen')); // ELabel
+		bg2.alpha = 0;
 		add(bg2);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -218,18 +219,17 @@ class FreeplayState extends MusicBeatState
 			}
 			curDifficulty = 1;
 			diffText.text = "";
-			scoreText.text = "RUN";
+			scoreText.text = "RUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN\nRUN-RUN-RUN-RUN-RUN"; // lol
 			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
 			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
-			bg2.visible = true; // Bobscreen
-			bg2.alpha = random.float(0.40, 0.60);
+			FlxTween.tween(bg2, {alpha: 1}); // Bobscreen
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
 			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
-			bg2.visible = false;
+			FlxTween.tween(bg2, {alpha: 0});
 		}
 
 		if (accepted)
@@ -308,7 +308,7 @@ class FreeplayState extends MusicBeatState
 			iconArray[i].alpha = 0.6;
 		}
 
-		changeDiff(); // ELabel
+		changeDiff(); // ELabel // For returning diffTitle to normal
 
 		iconArray[curSelected].alpha = 1;
 
