@@ -36,7 +36,8 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	var random:FlxRandom; // ELabel
-
+	var bg:FlxSprite; // ELabel
+	var bg2:FlxSprite; // ELabel
 	var scoreBG:FlxSprite; // ELabel
 
 	private var iconArray:Array<HealthIcon> = [];
@@ -68,14 +69,16 @@ class FreeplayState extends MusicBeatState
 		var isDebug:Bool = false;
 
 		#if debug
-		isDebug = false; // ELabel
+		isDebug = true;
 		#end
 
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		bg2 = new FlxSprite().loadGraphic(Paths.image('bob/bobscreen'); // ELabel
+		add(bg2);
+		bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue')); // ELabel
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -217,12 +220,17 @@ class FreeplayState extends MusicBeatState
 			diffText.text = "";
 			scoreText.text = "RUN";
 			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
-			scoreBG.offset.set(random.float(0, 10), random.float(0, 10)); 
+			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
+			bg.visible = false; // Way for change background, lol
+			bg2.visible = true;
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
+			bg.visible = true;
+			bg2.visible = false;
 		}
 
 		if (accepted)

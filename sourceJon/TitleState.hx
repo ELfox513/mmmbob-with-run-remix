@@ -351,7 +351,7 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		logoBl.animation.play('bump');
+		// logoBl.animation.play('bump'); // ELabel // Maybe, this should be removed..?......
 		danceLeft = !danceLeft;
 
 		FlxG.log.add(curBeat);
