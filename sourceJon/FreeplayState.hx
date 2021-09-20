@@ -39,19 +39,21 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	var random:FlxRandom; // ELabel
-	var bg:FlxSprite; // ELabel
-	var bg2:FlxSprite; // ELabel
-	var scoreBG:FlxSprite; // ELabel
-	var numForRunIter:Int = 0; // ELabel 
+	var bg:FlxSprite; 
+	var bg2:FlxSprite; 
+	var scoreBG:FlxSprite; 
+	var numForRunIter:Int = 0;  
+	var mainCam:FlxCamera;
+	var filters:Array<BitmapFilter>;
 
 	private var iconArray:Array<HealthIcon> = [];
 
 	override function create()
 	{
-		var mainCam = new FlxCamera(); // ELabel 
+		mainCam = new FlxCamera(); // ELabel 
 		FlxG.cameras.reset(mainCam);
 		FlxCamera.defaultCameras = [mainCam];
-		var filters:Array<BitmapFilter> = [ShadersHandler.chromaticAberration, ShadersHandler.brightShader];
+		filters = [ShadersHandler.chromaticAberration];
 		FlxG.camera.setFilters(filters);
 		FlxG.camera.filtersEnabled = true;
 
@@ -245,8 +247,6 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
 			ShadersHandler.setChrome(0.01); // Trying create shader stuff
-			//ShadersHandler.setContrast(0.01);
-			ShadersHandler.setBrightness(0.01);
 
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
@@ -261,8 +261,6 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 
 			ShadersHandler.setChrome(0);
-			//ShadersHandler.setContrast(0);
-			ShadersHandler.setBrightness(0);
 		}
 
 		if (accepted)
