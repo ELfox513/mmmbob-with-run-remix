@@ -248,7 +248,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
 			ShadersHandler.setChrome(0.01); // Trying create shader stuff
-			FlxTween.tween(this, {brightbrightValue: 0}, 10);
+			FlxTween.tween(this, {brightValue: 0}, 10);
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
@@ -262,7 +262,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 
 			ShadersHandler.setChrome(0);
-			FlxTween.tween(this, {brightbrightValue: 1}, 10);
+			FlxTween.tween(this, {brightValue: 1}, 10);
 		}
 
 		if (accepted)
