@@ -223,7 +223,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		ShadersHandler.setBrightness(brightValue);
+		ShadersHandler.setContrast(brightValue);
 		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel for BIG BLOCK
 			for (item in grpSongs.members) {
 				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for songs titles, I mean
@@ -248,7 +248,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
 			ShadersHandler.setChrome(0.01); // Trying create shader stuff
-			FlxTween.tween(this, {brightValue: 0}, 10);
+			FlxTween.tween(this, {brightValue: 1}, 2);
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
@@ -262,7 +262,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 
 			ShadersHandler.setChrome(0);
-			FlxTween.tween(this, {brightValue: 1}, 10);
+			FlxTween.tween(this, {brightValue: 0}, 2);
 		}
 
 		if (accepted)
