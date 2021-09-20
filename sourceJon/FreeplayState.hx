@@ -53,7 +53,7 @@ class FreeplayState extends MusicBeatState
 		mainCam = new FlxCamera(); // ELabel 
 		FlxG.cameras.reset(mainCam);
 		FlxCamera.defaultCameras = [mainCam];
-		filters = [ShadersHandler.chromaticAberration];
+		filters = [ShadersHandler.chromaticAberration, ShadersHandler.brightShader];
 		FlxG.camera.setFilters(filters);
 		FlxG.camera.filtersEnabled = true;
 
