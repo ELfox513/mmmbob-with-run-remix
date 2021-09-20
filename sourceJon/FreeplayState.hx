@@ -248,7 +248,7 @@ class FreeplayState extends MusicBeatState
 
 			ShadersHandler.setChrome(0.01); // Trying create shader stuff
 			
-			FlxTween.tween(ShadersHandler.brightShader.shader.data.brightness, {value: 0}, 10);
+			FlxTween.tween(ShadersHandler.brightShader.shader.data.brightness, {value: 1}, 10);
 
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
