@@ -7,15 +7,18 @@ class ChromaticAberration extends FlxShader
 	@:glFragmentSource('
 		#pragma header
 
-		uniform float rOffset;
-		uniform float gOffset;
-		uniform float bOffset;
+		uniform float rOffsetX;
+		uniform float rOffsetY;
+		uniform float gOffsetX;
+		uniform float gOffsetY;
+		uniform float bOffsetX;
+		uniform float bOffsetY;
 
 		void main()
 		{
-			vec4 col1 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(rOffset, 0.0));
-			vec4 col2 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(gOffset, 0.0));
-			vec4 col3 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(bOffset, 0.0));
+			vec4 col1 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(rOffsetX, rOffsetY));
+			vec4 col2 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(gOffsetX, gOffsetY));
+			vec4 col3 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(bOffsetX, bOffsetY));
 			vec4 toUse = texture2D(bitmap, openfl_TextureCoordv);
 			toUse.r = col1.r;
 			toUse.g = col2.g;

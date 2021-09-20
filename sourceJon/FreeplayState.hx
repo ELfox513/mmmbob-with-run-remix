@@ -45,7 +45,7 @@ class FreeplayState extends MusicBeatState
 	var numForRunIter:Int = 0;  
 	var mainCam:FlxCamera;
 	var filters:Array<BitmapFilter>;
-	var brightValue:Float = 0;
+	var chromeValue:Float = 0;
 
 	private var iconArray:Array<HealthIcon> = [];
 
@@ -54,7 +54,7 @@ class FreeplayState extends MusicBeatState
 		mainCam = new FlxCamera(); // ELabel 
 		FlxG.cameras.reset(mainCam);
 		FlxCamera.defaultCameras = [mainCam];
-		filters = [ShadersHandler.chromaticAberration, ShadersHandler.brightShader];
+		filters = [ShadersHandler.chromaticAberration];
 		FlxG.camera.setFilters(filters);
 		FlxG.camera.filtersEnabled = true;
 
@@ -223,7 +223,6 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		ShadersHandler.setContrast(brightValue);
 		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel for BIG BLOCK
 			for (item in grpSongs.members) {
 				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for songs titles, I mean
@@ -234,21 +233,22 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = 1;
 			diffText.text = "";
 
-			if (numForRunIter == 0) scoreText.text = ""; //RUNRUNRUNRUNRUNRUN
-			if (numForRunIter % 9 == 8) {                //RUNRUNRUNRUNRUNRUN
-				scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
-			} else {                                     //RUNRUNRUNRUNRUNRUN
-				scoreText.text = scoreText.text + "RUN"; //RUNRUNRUNRUNRUNRUN
-			}                                            //RUNRUNRUNRUNRUNRUN
-			numForRunIter += 1;                          //RUNRUNRUNRUNRUNRUN
+			if (numForRunIter < 169) { // So many RUNs, so litte FPS. Agree?           //RUNRUNRUNRUNRUNRUN
+				if (numForRunIter == 0) scoreText.text = "";                           //RUNRUNRUNRUNRUNRUN
+				if (numForRunIter % 14 == 13) scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
+				if (numForRunIter % 2 == 1) scoreText.text = scoreText.text + "RUN";   //RUNRUNRUNRUNRUNRUN
+			}                                                                          //RUNRUNRUNRUNRUNRUN
+			numForRunIter++;                                                           //RUNRUNRUNRUNRUNRUN
 
 			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
 			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
 			FlxTween.cancelTweensOf(bg2);
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
-			ShadersHandler.setChrome(0.01); // Trying create shader stuff
-			FlxTween.tween(this, {brightValue: 1}, 2);
+			chromeValue = 0.01;
+			ShadersHandler.setChrome(random.float(0, 0.01), random.float(0, 0.01),
+			                         random.float(0, 0.01), random.float(0, 0.01),
+									 random.float(0, 0.01), random.float(0, 0.01)); // Trying create shader stuff\
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
@@ -261,8 +261,8 @@ class FreeplayState extends MusicBeatState
 			FlxTween.cancelTweensOf(bg2);
 			FlxTween.tween(bg2, {alpha: 0}, 0.25);
 
-			ShadersHandler.setChrome(0);
-			FlxTween.tween(this, {brightValue: 0}, 2);
+			FlxTween.tween(this, {chromeValue: 0}, 0.25);
+			ShadersHandler.setChrome(chromeValue, chromeValue, chromeValue, chromeValue, chromeValue, chromeValue);
 		}
 
 		if (accepted)
