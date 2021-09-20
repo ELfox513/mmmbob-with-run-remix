@@ -6,7 +6,6 @@ import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.math.FlxPoint; // ELabel
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.math.FlxRandom; // ELabel
@@ -233,10 +232,10 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = 1;
 			diffText.text = "";
 
-			if (numForRunIter < 169) { // So many RUNs, so litte FPS. Agree?           //RUNRUNRUNRUNRUNRUN
+			if (numForRunIter < 337) { // So many RUNs, so litte FPS. Agree?           //RUNRUNRUNRUNRUNRUN
 				if (numForRunIter == 0) scoreText.text = "";                           //RUNRUNRUNRUNRUNRUN
 				if (numForRunIter % 14 == 13) scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
-				if (numForRunIter % 2 == 1) scoreText.text = scoreText.text + "RUN";   //RUNRUNRUNRUNRUNRUN
+				if (numForRunIter % 2 == 0) scoreText.text = scoreText.text + "RUN";   //RUNRUNRUNRUNRUNRUN
 			}                                                                          //RUNRUNRUNRUNRUNRUN
 			numForRunIter++;                                                           //RUNRUNRUNRUNRUNRUN
 
@@ -259,9 +258,9 @@ class FreeplayState extends MusicBeatState
 			scoreText.offset.set(0, 0);
 			scoreBG.offset.set(0, 0);
 			FlxTween.cancelTweensOf(bg2);
-			FlxTween.tween(bg2, {alpha: 0}, 0.25);
+			FlxTween.tween(bg2, {alpha: 0}, 0.5);
 
-			FlxTween.tween(this, {chromeValue: 0}, 0.25);
+			FlxTween.tween(this, {chromeValue: 0}, 0.5);
 			ShadersHandler.setChrome(chromeValue, chromeValue, chromeValue, chromeValue, chromeValue, chromeValue);
 		}
 
