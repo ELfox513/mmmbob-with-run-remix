@@ -232,7 +232,7 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = 1;
 			diffText.text = "";
 
-			if (numForRunIter < 337) { // So many RUNs, so litte FPS. Agree?           //RUNRUNRUNRUNRUNRUN
+			if (numForRunIter < 351) { // So many RUNs, so litte FPS. Agree?           //RUNRUNRUNRUNRUNRUN
 				if (numForRunIter == 0) scoreText.text = "";                           //RUNRUNRUNRUNRUNRUN
 				if (numForRunIter % 14 == 13) scoreText.text = scoreText.text + "\n";  //RUNRUNRUNRUNRUNRUN
 				if (numForRunIter % 2 == 0) scoreText.text = scoreText.text + "RUN";   //RUNRUNRUNRUNRUNRUN
@@ -262,6 +262,11 @@ class FreeplayState extends MusicBeatState
 
 			FlxTween.tween(this, {chromeValue: 0}, 0.5);
 			ShadersHandler.setChrome(chromeValue, chromeValue, chromeValue, chromeValue, chromeValue, chromeValue);
+		}
+
+		if (songs[curSelected].songName == 'run-original') { // I'm too lazy for linking run-original data and run music :/
+			curDifficulty = 1;
+			diffText.text = "the chart that acutally \nhas 400 notes per secod";
 		}
 
 		if (accepted)
