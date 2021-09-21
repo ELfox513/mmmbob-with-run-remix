@@ -126,7 +126,7 @@ class FreeplayState extends MusicBeatState
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
 
-		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
+		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 48);
 		diffText.font = scoreText.font;
 		add(diffText);
 
@@ -247,7 +247,7 @@ class FreeplayState extends MusicBeatState
 			chromeValue = 0.01;
 			ShadersHandler.setChrome(random.float(0, 0.01), random.float(0, 0.01),
 			                         random.float(0, 0.01), random.float(0, 0.01),
-									 random.float(0, 0.01), random.float(0, 0.01)); // Trying create shader stuff\
+				 random.float(0, 0.01), random.float(0, 0.01)); // Trying create shader stuff\
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
@@ -267,7 +267,6 @@ class FreeplayState extends MusicBeatState
 		if (songs[curSelected].songName == 'run-original') { // I'm too lazy for linking run-original data and run music :/
 			curDifficulty = 1;
 			diffText.text = "the chart that acutally" + "\n" + "has 400 notes per secod";
-			trace(diffText.text);
 		}
 
 		if (accepted)
