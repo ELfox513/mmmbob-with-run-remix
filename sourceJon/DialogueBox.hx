@@ -115,7 +115,9 @@ class DialogueBox extends FlxSpriteGroup
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
 			case 'run-remix-because-its-cool': // ELabel
-				hasDialog = false;             // Yea, I don't know, that I do
+				hasDialog = false;             // Why dialogs is not remove by default?
+			case 'run-original':
+				hasDialog = false;
 			case 'little-man':
 				hasDialog = false;
 			default:

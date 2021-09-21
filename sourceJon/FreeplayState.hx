@@ -266,7 +266,8 @@ class FreeplayState extends MusicBeatState
 
 		if (songs[curSelected].songName == 'run-original') { // I'm too lazy for linking run-original data and run music :/
 			curDifficulty = 1;
-			diffText.text = "the chart that acutally \nhas 400 notes per secod";
+			diffText.text = "the chart that acutally" + "\n" + "has 400 notes per secod";
+			trace(diffText.text);
 		}
 
 		if (accepted)
