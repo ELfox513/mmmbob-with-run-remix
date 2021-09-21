@@ -228,10 +228,10 @@ class FreeplayState extends MusicBeatState
 
 		if (songs[curSelected].songName == 'run-remix-because-its-cool') { // ELabel for BIG BLOCK
 			for (item in grpSongs.members) {
-				item.offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for songs titles, I mean
+				item.offset.set(random.float(-5, 5), random.float(-5, 5)); // Some shaking for songs titles, I mean
 			}
 			for (i in 0...iconArray.length) {
-				iconArray[i].offset.set(random.float(0, 10), random.float(0, 10)); // Some shaking for icons
+				iconArray[i].offset.set(random.float(-5, 5), random.float(-5, 5)); // Some shaking for icons
 			}
 			curDifficulty = 1;
 			diffText.text = "";
@@ -243,15 +243,15 @@ class FreeplayState extends MusicBeatState
 			}                                                                          //RUNRUNRUNRUNRUNRUN
 			numForRunIter++;                                                           //RUNRUNRUNRUNRUNRUN
 
-			scoreText.offset.set(random.float(0, 10), random.float(0, 10)); // You already know :)
-			scoreBG.offset.set(random.float(0, 10), random.float(0, 10));
+			scoreText.offset.set(random.float(-5, 5), random.float(-5, 5)); // You already know :)
+			scoreBG.offset.set(random.float(-5, 5), random.float(-5, 5));
 			FlxTween.cancelTweensOf(bg2);
 			FlxTween.tween(bg2, {alpha: 1}, 0.25); // Bobscreen
 
-			chromeValue = 0.01;
-			ShadersHandler.setChrome(random.float(0, 0.01), random.float(0, 0.01),
-			                         random.float(0, 0.01), random.float(0, 0.01),
-				 random.float(0, 0.01), random.float(0, 0.01)); // Trying create shader stuff\
+			chromeValue = 0.005;
+			ShadersHandler.setChrome(random.float(-0.005, 0.005), random.float(-0.005, 0.005),
+			                         random.float(-0.005, 0.005), random.float(-0.005, 0.005),
+			                         random.float(-0.005, 0.005), random.float(-0.005, 0.005)); // Trying create shader stuff\
 		} else {
 			for (item in grpSongs.members) item.offset.set(0, 0);
 			for (i in 0...iconArray.length) iconArray[i].offset.set(0);
@@ -265,7 +265,7 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(bg2, {alpha: 0}, 0.5);
 
 			FlxTween.tween(this, {chromeValue: 0}, 0.5);
-			ShadersHandler.setChrome(chromeValue, chromeValue, chromeValue, chromeValue, chromeValue, chromeValue);
+			ShadersHandler.setChrome(chromeValue, chromeValue, -chromeValue, -chromeValue, -chromeValue, chromeValue);
 		}
 
 		if (songs[curSelected].songName == 'run-original') { // I'm too lazy for linking run-original data and run music :/
