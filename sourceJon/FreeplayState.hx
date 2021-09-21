@@ -31,6 +31,7 @@ class FreeplayState extends MusicBeatState
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
+	var diffText2:FlxText; // ELabel
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
@@ -126,9 +127,12 @@ class FreeplayState extends MusicBeatState
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
 
-		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 48);
+		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
+		diffText2 = new FlxText(scoreText.x, scoreText.y + 54, 0, "", 24); // ELabel
+		diffText2.font = scoreText.font;
 		add(diffText);
+		add(diffText2);
 
 		add(scoreText);
 
@@ -266,8 +270,9 @@ class FreeplayState extends MusicBeatState
 
 		if (songs[curSelected].songName == 'run-original') { // I'm too lazy for linking run-original data and run music :/
 			curDifficulty = 1;
-			diffText.text = "the chart that acutally" + "\n" + "has 400 notes per secod";
-		}
+			diffText.text = "the chart that acutally";
+			diffText2.text = "has 400 notes per secod";
+		} else diffText2.text = ""; // *.visible = false - will better...
 
 		if (accepted)
 		{
