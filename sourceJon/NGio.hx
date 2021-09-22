@@ -1,5 +1,6 @@
 package;
 
+#if newgrounds
 import flixel.FlxG;
 import flixel.util.FlxSignal;
 import flixel.util.FlxTimer;
@@ -13,6 +14,7 @@ import io.newgrounds.objects.events.Result.GetCurrentVersionResult;
 import io.newgrounds.objects.events.Result.GetVersionResult;
 import lime.app.Application;
 import openfl.display.Stage;
+#end
 
 using StringTools;
 
@@ -21,6 +23,7 @@ using StringTools;
  */
 class NGio
 {
+	#if newgrounds
 	public static var isLoggedIn:Bool = false;
 	public static var scoreboardsLoaded:Bool = false;
 
@@ -32,9 +35,11 @@ class NGio
 	public static var GAME_VER:String = "";
 	public static var GAME_VER_NUMS:String = '';
 	public static var gotOnlineVer:Bool = false;
+	#end
 
 	public static function noLogin(api:String)
 	{
+		#if newgrounds
 		trace('INIT NOLOGIN');
 		GAME_VER = "v" + Application.current.meta.get('version');
 
@@ -56,10 +61,12 @@ class NGio
 				call.send();
 			});
 		}
+		#end
 	}
 
 	public function new(api:String, encKey:String, ?sessionId:String)
 	{
+		#if newgrounds
 		trace("connecting to newgrounds");
 
 		NG.createAndCheckSession(api, sessionId);
@@ -85,10 +92,12 @@ class NGio
 			 */
 			NG.core.requestLogin(onNGLogin);
 		}
+		#end
 	}
 
 	function onNGLogin():Void
 	{
+		#if newgrounds
 		trace('logged in! user:${NG.core.user.name}');
 		isLoggedIn = true;
 		FlxG.save.data.sessionId = NG.core.sessionId;
@@ -100,11 +109,13 @@ class NGio
 		NG.core.requestScoreBoards(onNGBoardsFetch);
 
 		ngDataLoaded.dispatch();
+		#end
 	}
 
 	// --- MEDALS
 	function onNGMedalFetch():Void
 	{
+		#if newgrounds
 		/*
 			// Reading medal info
 			for (id in NG.core.medals.keys())
@@ -118,11 +129,13 @@ class NGio
 			if (!unlockingMedal.unlocked)
 				unlockingMedal.sendUnlock();
 		 */
+		 #end
 	}
 
 	// --- SCOREBOARDS
 	function onNGBoardsFetch():Void
 	{
+		#if newgrounds
 		/*
 			// Reading medal info
 			for (id in NG.core.scoreBoards.keys())
@@ -143,10 +156,12 @@ class NGio
 		trace("shoulda got score by NOW!");
 		// board.requestScores(20);// get the best 10 scores ever logged
 		// more info on scores --- http://www.newgrounds.io/help/components/#scoreboard-getscores
+		#end
 	}
 
 	inline static public function postScore(score:Int = 0, song:String)
 	{
+		#if newgrounds
 		if (isLoggedIn)
 		{
 			for (id in NG.core.scoreBoards.keys())
@@ -161,10 +176,12 @@ class NGio
 				// trace('loaded scoreboard id:$id, name:${board.name}');
 			}
 		}
+		#end
 	}
 
 	function onNGScoresFetch():Void
 	{
+		#if newgrounds
 		scoreboardsLoaded = true;
 
 		ngScoresLoaded.dispatch();
@@ -180,21 +197,26 @@ class NGio
 		// board.postScore(HighScore.score);
 
 		// NGio.scoreboardArray = NG.core.scoreBoards.get(8004).scores;
+		#end
 	}
 
 	inline static public function logEvent(event:String)
 	{
+		#if newgrounds
 		NG.core.calls.event.logEvent(event).send();
 		trace('should have logged: ' + event);
+		#end
 	}
 
 	inline static public function unlockMedal(id:Int)
 	{
+		#if newgrounds
 		if (isLoggedIn)
 		{
 			var medal = NG.core.medals.get(id);
 			if (!medal.unlocked)
 				medal.sendUnlock();
 		}
+		#end
 	}
 }
