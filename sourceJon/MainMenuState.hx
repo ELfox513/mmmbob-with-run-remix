@@ -16,7 +16,7 @@ import flixel.util.FlxColor;
 import io.newgrounds.NG;
 #end
 import lime.app.Application;
-import flixel.ui.FlxVirtualPad; // ELabel
+import ui.FlxVirtualPad; // ELabel
 
 #if windows
 import Discord.DiscordClient;
@@ -141,8 +141,9 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		var vpad = new FNFVirtualPad(FlxDPadMode.FULL, FlxActionMode.A_B);
-		add(vpad);
+		#if mobileC // ELabel
+		addVirtualPad(UP_DOWN, A_B);
+		#end
 
 		super.create();
 	}

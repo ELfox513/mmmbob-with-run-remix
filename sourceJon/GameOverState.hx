@@ -8,6 +8,8 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
+import ui.FlxVirtualPad; // ELabel
+
 class GameOverState extends FlxTransitionableState
 {
 	var bfX:Float = 0;
@@ -48,6 +50,10 @@ class GameOverState extends FlxTransitionableState
 
 		// FlxTween.tween(restart, {alpha: 1}, 1, {ease: FlxEase.quartInOut});
 		// FlxTween.tween(restart, {y: restart.y + 40}, 7, {ease: FlxEase.quartInOut, type: PINGPONG});
+
+		#if mobileC // ELabel
+		addVirtualPad(NONE, A_B);
+		#end
 
 		super.create();
 	}

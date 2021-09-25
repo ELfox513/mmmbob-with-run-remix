@@ -44,8 +44,15 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 
+#if mobileC
+import ui.Mobilecontrols;
+#end
 #if windows
 import Discord.DiscordClient;
+#end
+#if sys // ELabel
+import Sys;
+import sys.FileSystem;
 #end
 
 using StringTools;
@@ -195,6 +202,8 @@ class PlayState extends MusicBeatState
 
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
+
+	var mcontrols:Mobilecontrols;
 	
 	// Will fire once to prevent debug spam messages and broken animations
 	private var triggeredAlready:Bool = false;
@@ -1123,6 +1132,29 @@ class PlayState extends MusicBeatState
 		// UI_camera.zoom = 1;
 
 		// cameras = [FlxG.cameras.list[1]];
+
+		#if mobileC // ELabel
+		mcontrols = new Mobilecontrols();
+		switch (mcontrols.mode) {
+			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+				controls.setVirtualPad(mcontrols._virtualPad, FULL, NONE);
+			case HITBOX:
+				controls.setHitBox(mcontrols._hitbox);
+			default:
+		}
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
+
+		var camcontrol = new FlxCamera();
+		FlxG.cameras.add(camcontrol);
+		camcontrol.bgColor.alpha = 0;
+		mcontrols.cameras = [camcontrol];
+
+		mcontrols.visible = false;
+
+		add(mcontrols);
+		#end
+
 		startingSong = true;
 
 		if (isStoryMode)
@@ -1510,6 +1542,10 @@ class PlayState extends MusicBeatState
 
 	function startCountdown():Void
 	{
+		#if mobileC
+		mcontrols.visible = true;
+		#end
+
 		if (SONG.song.toLowerCase() == 'run' && screenBudget != null)
 		{
 			FlxTween.tween(screenBudget, {alpha: 0}, Conductor.crochet / 1000, {
@@ -2213,7 +2249,7 @@ class PlayState extends MusicBeatState
 			scoreTxt.text = "Suggested Offset: " + offsetTest;
 
 		}
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if ((FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end) && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;

@@ -15,6 +15,8 @@ import flixel.tweens.FlxTween; // ELabel
 import flixel.FlxCamera; 
 import openfl.filters.BitmapFilter;
 
+import ui.FlxVirtualPad; // ELabel
+
 #if windows
 import Discord.DiscordClient;
 #end
@@ -165,6 +167,10 @@ class FreeplayState extends MusicBeatState
 
 			trace(md);
 		 */
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}

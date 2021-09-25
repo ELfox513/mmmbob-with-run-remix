@@ -13,6 +13,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
+import ui.FlxVirtualPad;
 
 #if windows
 import Discord.DiscordClient;
@@ -250,6 +251,10 @@ class StoryMenuState extends MusicBeatState
 		choose.scale.y = 0.85;
 		choose.screenCenter(X);
 		add(choose);
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}

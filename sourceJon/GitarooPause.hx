@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+import ui.FlxVirtualPad; // ELabel
+
 class GitarooPause extends MusicBeatState
 {
 	var replayButton:FlxSprite;
@@ -46,6 +48,10 @@ class GitarooPause extends MusicBeatState
 		add(cancelButton);
 
 		changeThing();
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}

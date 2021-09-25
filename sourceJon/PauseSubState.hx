@@ -13,6 +13,8 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 
+import ui.FlxVirtualPad; // ELabel
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
@@ -75,6 +77,10 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float)

@@ -13,6 +13,10 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import options.CustomControlsState;
+import options.AboutState;
+
+import ui.FlxVirtualPad; // ELabel
 
 class OptionsMenu extends MusicBeatState
 {
@@ -46,13 +50,15 @@ class OptionsMenu extends MusicBeatState
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second.")
 		]),
-		#if !mobile
 		new OptionCatagory("Misc", [
 			
 			new FPSOption("Toggle the FPS Counter"),
 			new ReplayOption("View replays")
+		]),
+		new OptionCatagory("Mobile settings", [
+			new CustomControls("edit a control"),
+			new About("about android port")
 		])
-		#end
 	];
 
 	private var currentDescription:String = "";
@@ -90,6 +96,10 @@ class OptionsMenu extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}

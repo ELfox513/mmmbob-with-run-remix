@@ -32,9 +32,12 @@ class LoadReplayState extends MusicBeatState
 	override function create()
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-        #if sys
+        #if android
+		controlsStrings = sys.FileSystem.readDirectory(Paths.internalPath + "/assets/replays/");
+		#elseif sys
 		controlsStrings = sys.FileSystem.readDirectory(Sys.getCwd() + "/assets/replays/");
         #end
+
 		trace(controlsStrings);
 
         controlsStrings.sort(Reflect.compare);
@@ -92,6 +95,10 @@ class LoadReplayState extends MusicBeatState
 		add(poggerDetails);
 
 		changeSelection(0);
+
+		#if mobileC // ELabel
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}

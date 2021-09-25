@@ -40,6 +40,8 @@
 
 	<classpath name="sourceJon" />
 
+	<assets path="assets/shared/images/hitbox"/> <!-- ELabel -->
+
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 	
@@ -47,7 +49,7 @@
 	<!-- define name="PRELOAD_ALL" unless="web" /> -->
 	<!-- define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/> -->
 
-	<define name="VIRT_CONTROLS" /> <!-- ELabel -->
+	<define name="mobileC" if="mobile" /> <!-- ELabel -->
 	
 	<section if="PRELOAD_ALL">
 		<library name="songs"    preload="true" />
