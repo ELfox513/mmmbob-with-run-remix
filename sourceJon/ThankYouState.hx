@@ -19,7 +19,17 @@ class ThankYouState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT)
+		var touched:Bool = false;
+
+		#if mobile
+		for (touch in FlxG.touches.list) {
+			if (touch.justPressed) {
+				touched = true;
+			}
+		}
+		#end
+
+		if (controls.ACCEPT || touched)
 		{
 			FlxG.switchState(new MainMenuState());
 		}

@@ -21,7 +21,17 @@ class WarningState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT && !wentout)
+		var touched:Bool = false;
+
+		#if mobile
+		for (touch in FlxG.touches.list) {
+			if (touch.justPressed) {
+				touched = true;
+			}
+		}
+		#end
+
+		if ((controls.ACCEPT || touched) && !wentout)
 		{
 			wentout = true;
 			FlxG.sound.music.fadeIn(0.5, 0.1, 0.7);
