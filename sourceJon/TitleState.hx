@@ -21,7 +21,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-#if newgrounds
+#if newgrounds // ELabel
 import io.newgrounds.NG;
 #end
 import lime.app.Application;
@@ -53,13 +53,23 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		#if android // ELabel
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
-		#if sys
+
+		#if android
+		if (!sys.FileSystem.exists(Paths.internalPath + "/assets/replays")) {
+			sys.FileSystem.createDirectory(Paths.internalPath + "/assets");
+			sys.FileSystem.createDirectory(Paths.internalPath + "/assets/replays");
+		}
+		#elseif sys // ELabel
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays")
 		#end
 
 		
@@ -87,7 +97,7 @@ class TitleState extends MusicBeatState
 		trace('NEWGROUNDS LOL');
 		#end
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('bob', 'waldy');
 
 		KadeEngineData.initSave();
 

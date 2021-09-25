@@ -1,4 +1,4 @@
-package;
+package; // Too many ELabels
 
 #if newgrounds
 import flixel.FlxG;
