@@ -44,7 +44,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 
-#if mobileC
+#if mobileC // ELabel
 import ui.Mobilecontrols;
 #end
 #if windows
@@ -203,7 +203,9 @@ class PlayState extends MusicBeatState
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 
+	#if mobileC
 	var mcontrols:Mobilecontrols;
+	#end
 	
 	// Will fire once to prevent debug spam messages and broken animations
 	private var triggeredAlready:Bool = false;
