@@ -69,7 +69,7 @@ class TitleState extends MusicBeatState
 		}
 		#elseif sys // ELabel
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays")
+			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
 		#end
 
 		
