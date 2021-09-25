@@ -16,6 +16,7 @@ import flixel.util.FlxColor;
 import io.newgrounds.NG;
 #end
 import lime.app.Application;
+import flixel.ui.FlxVirtualPad; // ELabel
 
 #if windows
 import Discord.DiscordClient;
@@ -139,6 +140,9 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
+
+		var vpad = new FNFVirtualPad(FlxDPadMode.FULL, FlxActionMode.A_B);
+		add(vpad);
 
 		super.create();
 	}

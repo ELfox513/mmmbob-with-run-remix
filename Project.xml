@@ -46,6 +46,8 @@
 	<define name="PRELOAD_ALL" />
 	<!-- define name="PRELOAD_ALL" unless="web" /> -->
 	<!-- define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/> -->
+
+	<define name="VIRT_CONTROLS" /> <!-- ELabel -->
 	
 	<section if="PRELOAD_ALL">
 		<library name="songs"    preload="true" />
@@ -162,5 +164,7 @@
 
 	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
 	<haxedef name="NG_LOGIN" if="newgrounds" />
+
+	
 	
 </project>
