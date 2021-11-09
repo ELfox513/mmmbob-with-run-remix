@@ -45,7 +45,7 @@ jobs:
           haxelib install actuate 
           haxelib run lime rebuild extension-webm windows
           haxelib list
-          haxelib run lime build windows -debug
+          haxelib run lime build windows
           
       - uses: actions/upload-artifact@v2
         with:
