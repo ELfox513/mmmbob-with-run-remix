@@ -21,7 +21,9 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+#if desktop
 import io.newgrounds.NG;
+#end
 import lime.app.Application;
 import openfl.Assets;
 
@@ -54,10 +56,19 @@ class TitleState extends MusicBeatState
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
+
+		#if android // ELabel
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
 		
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+		#if mobile // ELabel
+		if (!sys.FileSystem.exists(Paths.internalPath + "/assets/replays")) {
+			sys.FileSystem.createDirectory(Paths.internalPath + "/assets");
+			sys.FileSystem.createDirectory(Paths.internalPath + "/assets/replays");
+		}
+		#elseif sys
+			if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
+				sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
 		#end
 
 		

@@ -97,11 +97,11 @@ class Main extends Sprite
        GlobalVideo.setWebm(webmHandle);
        #end
 
-		#if !mobile
+		//#if !mobile // ELabel
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
-		#end
+		//#end
 	}
 
 	var game:FlxGame;
