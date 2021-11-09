@@ -157,7 +157,7 @@ class NGio
 		trace("shoulda got score by NOW!");
 		// board.requestScores(20);// get the best 10 scores ever logged
 		// more info on scores --- http://www.newgrounds.io/help/components/#scoreboard-getscores
-		#if desktop
+		#end
 	}
 
 	inline static public function postScore(score:Int = 0, song:String)

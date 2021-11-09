@@ -12,7 +12,9 @@ import flixel.system.FlxSound;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+#if desktop
 import io.newgrounds.NG;
+#end
 import lime.app.Application;
 
 #if windows
