@@ -673,8 +673,8 @@ class Character extends FlxSprite
 	{
 		if (!curCharacter.startsWith('bf'))
 		{ 
-			if (animation.curAnim != null) 
-			{
+			if (animation.curAnim != null)  // ELabel
+			{                               // This will fix the annoying error when porting to android
 				if (animation.curAnim.name.startsWith('sing'))
 				{
 					holdTimer += elapsed;

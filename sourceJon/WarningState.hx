@@ -33,7 +33,7 @@ class WarningState extends MusicBeatState
 		}
 		#end
 
-		if (controls.ACCEPT && !wentout)
+		if (pressedEnter && !wentout)
 		{
 			wentout = true;
 			FlxG.sound.music.fadeIn(0.5, 0.1, 0.7);
