@@ -1,5 +1,7 @@
 package;
 
+import flixel.animation.FlxAnimationController; // ELabel Debug
+import flixel.animation.FlxAnimation; // ELabel Debug
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
@@ -670,10 +672,13 @@ class Character extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		if (!curCharacter.startsWith('bf'))
-		{
-			if (animation.curAnim.name.startsWith('sing'))
+		{ 
+			if (animation.curAnim != null) 
 			{
-				holdTimer += elapsed;
+				if (animation.curAnim.name.startsWith('sing'))
+				{
+					holdTimer += elapsed;
+				}
 			}
 
 			var dadVar:Float = 4;
