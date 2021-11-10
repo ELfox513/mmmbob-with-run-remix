@@ -10,8 +10,8 @@ import flixel.input.actions.FlxActionSet;
 import flixel.input.gamepad.FlxGamepadButton;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
-import flixel.ui.FlxVirtualPad;
 import flixel.ui.FlxButton;
+import VirtualPad;
 
 #if (haxe >= "4.0.0")
 enum abstract Action(String) to String from String
@@ -274,11 +274,11 @@ class Controls extends FlxActionSet
 	}
 
 	// ELabel begin
-	public var trackedinputs:Array<FlxActionInput> = [];
+	public var tracked_inputs:Array<FlxActionInput> = [];
 
-	public function addbutton(action:FlxActionDigital, button:FlxButton, state:FlxInputState) {
+	public function add_vbtn(action:FlxActionDigital, button:FlxButton, state:FlxInputState) {
 		var input = new FlxActionInputDigitalIFlxInput(button, state);
-		trackedinputs.push(input);
+		tracked_inputs.push(input);
 		
 		action.add(input);
 		//action.addInput(button, state);
@@ -287,49 +287,48 @@ class Controls extends FlxActionSet
 	/*
 	public function setHitBox(hitbox:Hitbox) 
 	{
-		inline forEachBound(Control.UP, (action, state) -> addbutton(action, hitbox.buttonUp, state));
-		inline forEachBound(Control.DOWN, (action, state) -> addbutton(action, hitbox.buttonDown, state));
-		inline forEachBound(Control.LEFT, (action, state) -> addbutton(action, hitbox.buttonLeft, state));
-		inline forEachBound(Control.RIGHT, (action, state) -> addbutton(action, hitbox.buttonRight, state));	
+		inline forEachBound(Control.UP, (action, state) -> add_vbtn(action, hitbox.buttonUp, state));
+		inline forEachBound(Control.DOWN, (action, state) -> add_vbtn(action, hitbox.buttonDown, state));
+		inline forEachBound(Control.LEFT, (action, state) -> add_vbtn(action, hitbox.buttonLeft, state));
+		inline forEachBound(Control.RIGHT, (action, state) -> add_vbtn(action, hitbox.buttonRight, state));	
 	}
 	*/
 
-	
-	public function setVirtualPad(virtualPad:FlxVirtualPad, ?DPad:FlxDPadMode, ?Action:FlxActionMode) {
-		if (DPad == null) DPad = NONE;
-		if (Action == null) Action = NONE;
+	public function setVirtualPad(vpad:VirtualPad, ?dpad_mode:DPadMode, ?action_mode:ActionMode) {
+		if (dpad_mode == null) dpad_mode = NONE;
+		if (action_mode == null) action_mode = NONE;
 		
-		switch (DPad) {
+		switch (dpad_mode) {
 			case UP_DOWN:
-				inline forEachBound(Control.UP, (action, state) -> addbutton(action, virtualPad.buttonUp, state));
-				inline forEachBound(Control.DOWN, (action, state) -> addbutton(action, virtualPad.buttonDown, state));
+				inline forEachBound(Control.UP, (action, state) -> add_vbtn(action, vpad.btn_Up, state));
+				inline forEachBound(Control.DOWN, (action, state) -> add_vbtn(action, vpad.btn_Down, state));
 			case LEFT_RIGHT:
-				inline forEachBound(Control.LEFT, (action, state) -> addbutton(action, virtualPad.buttonLeft, state));
-				inline forEachBound(Control.RIGHT, (action, state) -> addbutton(action, virtualPad.buttonRight, state));
+				inline forEachBound(Control.LEFT, (action, state) -> add_vbtn(action, vpad.btn_Left, state));
+				inline forEachBound(Control.RIGHT, (action, state) -> add_vbtn(action, vpad.btn_Right, state));
 			case UP_LEFT_RIGHT:
-				inline forEachBound(Control.UP, (action, state) -> addbutton(action, virtualPad.buttonUp, state));
-				inline forEachBound(Control.LEFT, (action, state) -> addbutton(action, virtualPad.buttonLeft, state));
-				inline forEachBound(Control.RIGHT, (action, state) -> addbutton(action, virtualPad.buttonRight, state));
-			case FULL:
-				inline forEachBound(Control.UP, (action, state) -> addbutton(action, virtualPad.buttonUp, state));
-				inline forEachBound(Control.DOWN, (action, state) -> addbutton(action, virtualPad.buttonDown, state));
-				inline forEachBound(Control.LEFT, (action, state) -> addbutton(action, virtualPad.buttonLeft, state));
-				inline forEachBound(Control.RIGHT, (action, state) -> addbutton(action, virtualPad.buttonRight, state));	
+				inline forEachBound(Control.UP, (action, state) -> add_vbtn(action, vpad.btn_Up, state));
+				inline forEachBound(Control.LEFT, (action, state) -> add_vbtn(action, vpad.btn_Left, state));
+				inline forEachBound(Control.RIGHT, (action, state) -> add_vbtn(action, vpad.btn_Right, state));
+			case L_FULL | R_FULL:
+				inline forEachBound(Control.UP, (action, state) -> add_vbtn(action, vpad.btn_Up, state));
+				inline forEachBound(Control.DOWN, (action, state) -> add_vbtn(action, vpad.btn_Down, state));
+				inline forEachBound(Control.LEFT, (action, state) -> add_vbtn(action, vpad.btn_Left, state));
+				inline forEachBound(Control.RIGHT, (action, state) -> add_vbtn(action, vpad.btn_Right, state));	
 			case NONE:
 		}
 
-		switch (Action) {
+		switch (action_mode) {
 			case A:
-				inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
+				inline forEachBound(Control.ACCEPT, (action, state) -> add_vbtn(action, vpad.btn_A, state));
 			case A_B:
-				inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
-				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
+				inline forEachBound(Control.ACCEPT, (action, state) -> add_vbtn(action, vpad.btn_A, state));
+				inline forEachBound(Control.BACK, (action, state) -> add_vbtn(action, vpad.btn_B, state));
 			case A_B_C:
-				inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
-				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
+				inline forEachBound(Control.ACCEPT, (action, state) -> add_vbtn(action, vpad.btn_A, state));
+				inline forEachBound(Control.BACK, (action, state) -> add_vbtn(action, vpad.btn_B, state));
 			case A_B_X_Y:
-				inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
-				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
+				inline forEachBound(Control.ACCEPT, (action, state) -> add_vbtn(action, vpad.btn_A, state));
+				inline forEachBound(Control.BACK, (action, state) -> add_vbtn(action, vpad.btn_B, state));
 			case NONE:
 		}
 	}
