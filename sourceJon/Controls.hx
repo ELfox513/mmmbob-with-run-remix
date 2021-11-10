@@ -314,6 +314,8 @@ class Controls extends FlxActionSet
 				inline forEachBound(Control.DOWN, (action, state) -> add_vbtn(action, vpad.btn_Down, state));
 				inline forEachBound(Control.LEFT, (action, state) -> add_vbtn(action, vpad.btn_Left, state));
 				inline forEachBound(Control.RIGHT, (action, state) -> add_vbtn(action, vpad.btn_Right, state));	
+			case CUSTOM:
+			case HITBOX:
 			case NONE:
 		}
 
