@@ -12,6 +12,9 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
+import flixel.FlxCamera;
+import flixel.input.actions.FlxActionInput;
+import flixel.ui.FlxVirtualPad;
 
 class MusicBeatState extends FlxUIState
 {
@@ -24,6 +27,38 @@ class MusicBeatState extends FlxUIState
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
+
+	// ELabel begin
+	public var v_pad:FlxVirtualPad;
+
+	var trackedinputs:Array<FlxActionInput> = [];
+
+	public var v_pad_cam:FlxCamera;
+
+	// adding virtualpad to state
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+		v_pad = new FlxVirtualPad(DPad, Action);
+		v_pad.alpha = 0.75;
+		v_pad_cam = new FlxCamera();
+		FlxG.cameras.add(v_pad_cam);
+		v_pad_cam.bgColor.alpha = 0;
+		v_pad.cameras = [v_pad_cam];
+		add(v_pad);
+		controls.setVirtualPad(v_pad, DPad, Action);
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
+
+		#if mobile
+		controls.addAndroidBack();
+		#end
+	}
+	
+	override function destroy() {
+		controls.removeFlxInput(trackedinputs);
+
+		super.destroy();
+	}
+	// ELabel end
 
 	override function create()
 	{

@@ -21,6 +21,18 @@ class WarningState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		var pressedEnter:Bool = controls.ACCEPT;
+
+		#if mobile // ELabel
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				pressedEnter = true;
+			}
+		}
+		#end
+
 		if (controls.ACCEPT && !wentout)
 		{
 			wentout = true;
