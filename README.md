@@ -14,7 +14,7 @@ FNF Links: **[itch.io page](https://ninja-muffin24.itch.io/funkin) ⋅ [Newgroun
 - [HiPhlox](https://twitter.com/HiPhlox) and [donney](https://twitter.com/Donna863_) - Art
 - [wildythomas](https://www.youtube.com/channel/UCm3eGs2etEOMzRX0iQ4QzqQ) and [KyleGFX](https://twitter.com/KyleGFX_RBLX) - Music
 
-### Special Thanks
+### Specia1 Thanks
 
 - [vomic](https://twitter.com/vomicom) - Fart Button Asset
 - [Paze](https://twitter.com/PazeTweets) - Programmed Discord Client
